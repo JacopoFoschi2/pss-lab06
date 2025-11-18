@@ -58,6 +58,7 @@ class TestStrictBankAccount {
         var withdrawal = -100.0;
         assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(ID, withdrawal));
         assertEquals(0, bankAccount.getBalance());
+        assertEquals(0, bankAccount.getTransactionsCount());
     }
 
     /**
@@ -68,5 +69,6 @@ class TestStrictBankAccount {
         var withdrawal = 100.0;
         assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(ID, withdrawal));
         assertEquals(0, bankAccount.getBalance());
+        assertEquals(0, bankAccount.getTransactionsCount());
     }
 }
