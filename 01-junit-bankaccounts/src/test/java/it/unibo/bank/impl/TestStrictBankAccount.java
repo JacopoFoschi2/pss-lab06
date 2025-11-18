@@ -55,7 +55,9 @@ class TestStrictBankAccount {
      */
     @Test
     public void testNegativeWithdraw() {
-        fail("To be implemented");
+        var withdrawal = -100.0;
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(ID, withdrawal));
+        assertEquals(0, bankAccount.getBalance());
     }
 
     /**
