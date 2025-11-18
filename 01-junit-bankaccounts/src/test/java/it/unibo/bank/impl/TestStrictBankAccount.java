@@ -16,13 +16,14 @@ class TestStrictBankAccount {
     // Create a new AccountHolder and a StrictBankAccount for it each time tests are executed.
     private AccountHolder mRossi;
     private BankAccount bankAccount;
+    private final static int ID = 0;
 
     /**
      * Prepare the tests.
      */
     @BeforeEach
     public void setUp() {
-        mRossi = new AccountHolder("Matteo", "Rossi", 0);
+        mRossi = new AccountHolder("Matteo", "Rossi", ID);
         bankAccount = new StrictBankAccount(mRossi, 0);
     }
 
@@ -41,7 +42,12 @@ class TestStrictBankAccount {
      */
     @Test
     public void testManagementFees() {
-        fail("To be implemented");
+        var balance = 100.0;
+        bankAccount.deposit(ID, balance);
+        var estimatedManagementFee = bankAccount.getTransactionsCount() * StrictBankAccount.TRANSACTION_FEE + StrictBankAccount.MANAGEMENT_FEE;
+        var estimatedBalance = balance - estimatedManagementFee;
+        bankAccount.chargeManagementFees(ID);
+        assertEquals(estimatedBalance, bankAccount.getBalance());
     }
 
     /**
