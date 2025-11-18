@@ -91,7 +91,13 @@ public final class Transformers {
      * @return A list containing only the elements that passed the test
      */
     public static <I> List<I> select(final Iterable<I> base, final Function<I, Boolean> test) {
-        return null;
+        var accepted = new ArrayList<I>();
+        for (var elem : base) {
+            if (test.call(elem)) {
+                accepted.add(elem);
+            }
+        }
+        return accepted;
     }
 
     /**
