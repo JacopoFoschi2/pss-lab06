@@ -54,7 +54,11 @@ public final class Transformers {
      * @return A transformed list where each input element is replaced with the produced elements
      */
     public static <I, O> List<O> transform(final Iterable<I> base, final Function<I, O> transformer) {
-        return null;
+        var transformedList = new ArrayList<O>();
+        for (var elem : base) {
+            transformedList.add(transformer.call(elem));
+        }
+        return transformedList;
     }
 
     /**
@@ -103,6 +107,12 @@ public final class Transformers {
      * @return A list containing only the elements that passed the test
      */
     public static <I> List<I> reject(final Iterable<I> base, final Function<I, Boolean> test) {
-        return null;
+        var rejected = new ArrayList<I>();
+        for (var elem : base) {
+            if (!test.call(elem)) {
+                rejected.add(elem);
+            }
+        }
+        return rejected;
     }
 }
